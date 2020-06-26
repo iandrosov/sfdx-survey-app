@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Qst_Survey__c</fullName>
+    <externalId>false</externalId>
+    <label>Qst Survey</label>
+    <referenceTo>Qst_Survey__c</referenceTo>
+    <relationshipLabel>Qst Survey Question</relationshipLabel>
+    <relationshipName>Qst_Survey_Question</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
