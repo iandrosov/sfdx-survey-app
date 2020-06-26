@@ -34,8 +34,9 @@
                                 <apex:outputText value="{!q.question}" />
                                  <apex:selectRadio value="{!q.values}">
                                     <apex:selectOptions value="{!items}"/>
-                                    </apex:selectRadio><p/>                                         
-                            </div><br/> 
+								</apex:selectRadio>
+								<p/>                                       
+                            </div><br/>
                         
                         </apex:repeat>
                     </div>
