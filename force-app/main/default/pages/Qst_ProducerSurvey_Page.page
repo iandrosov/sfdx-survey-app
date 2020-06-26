@@ -1,54 +1,30 @@
-<apex:page id="Survey" showHeader="true" controller="Qst_ProducerSurvey_Ctrl" >
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
-		<head>
-		    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		
-		    <title>Test Survey in Visual Force Page</title>
-		    <meta http-equiv="content-style-type" content="text/css" />
-		    <meta http-equiv="content-script-type" content="text/javascript" />
-		    <style TYPE="text/css">
-			.clean-gray{
-				border:solid 1px #DEDEDE;
-				background:#EFEFEF;
-				color:#222222;
-				padding:4px;
-				text-align:left;
-			}
-			.clean-yellow{
-				border:solid 1px #DEDEDE; 
-				background:#FFFFCC;
-				color:#222222;
-				padding:4px;
-				text-align:left;
-			}			
-		    </style>
-		</head>
+<apex:page id="Survey" showHeader="true" controller="Qst_ProducerSurvey_Ctrl" lightningStylesheets="true">
 
-		<body>
-			<div id="bodyDiv" class="body_mediumFont">
+			<apex:slds />
+
+			<div class="slds-scope">	
                 <div class="page-main"> 
                     <div class="main-content-wrapper"> 
                         <div class="main-content">
-			                <div class="table-title-wrapper"> 
-			                	<h2>Survey</h2>
-							</div>
-                            
+
+							<div class="slds-text-heading_large slds-m-left_small">{!surveyHeader}</div>
                             <apex:pageMessages id="nfyMessage" /> 
                             
 							<apex:form id="theForm" forceSSL="true">
 							    <br/><br/>
 								<div>
-										<apex:repeat value="{!inputs}" var="q">
+									<apex:repeat value="{!inputs}" var="q">
 										
-										<div class="clean-yellow">
+										<div class="slds-box slds-m-left_small slds-m-right_small">
 											<apex:outputText value="{!q.question}" />
  											<apex:selectRadio value="{!q.values}">
             									<apex:selectOptions value="{!items}"/>
            		 							</apex:selectRadio><p/>											
 										</div><br/>	
-										</apex:repeat>
+									
+									</apex:repeat>
 								</div>
-								<apex:commandButton action="{!saveSurvey}" value="Save" id="save_survey"/>
+								<apex:commandButton action="{!saveSurvey}" value="Submit Survey" id="save_survey"/>
 							</apex:form>
 
 		
@@ -57,6 +33,4 @@
 				</div>
 			    
 			</div>
-		</body>
-	</html>
 </apex:page>

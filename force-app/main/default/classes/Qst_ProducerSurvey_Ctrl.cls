@@ -2,15 +2,16 @@ public without sharing class Qst_ProducerSurvey_Ctrl {
     
 	public String contactId {get; set;}
 	public String xmldata{get; set;}
-
+	public String surveyHeader {get;set;}
 	public multiselectinput[] inputs { get; set; }
 	
 	public Qst_ProducerSurvey_Ctrl(){
-    	 inputs = new multiselectinput[]{};  	
+    	inputs = new multiselectinput[]{};  	
     
     	User user = [Select ContactId from User where Id = :UserInfo.getUserId()];
     	this.contactId = user.ContactId;
-    			
+		this.surveyHeader = getSurveyHeader(null);
+		
 		// Set static XML data to initialize survey component
 		this.xmldata = '<?xml version="1.0" encoding="UTF-8"?><questionaire><questions>		<question identifier="q1"><type>InputText</type><questionText>How satisfied are you with the purchase you made (of a product or service)?</questionText>			<answers/>		</question>		<question identifier="q2">			<type>InputText</type>			<questionText>How satisfied are you with the service you received?</questionText>			<answers/>		</question>		<question identifier="q3">			<type>InputText</type>			<questionText>How satisfied are you with our company overall?</questionText>			<answers/>		</question>		<question identifier="q4">			<type>InputText</type>			<questionText>担当プロデューサーはいかがでした？</questionText>			<answers/>		</question>		<question identifier="q5">			<type>InputText</type>			<questionText>How likely are you to buy from us again?</questionText>			<answers/>		</question>		<question identifier="q6">			<type>InputText</type>			<questionText>How likely are you to recommend our product/service to others?</questionText>			<answers/>		</question>		<question identifier="q6">			<type>InputText</type>			<questionText>How likely are you to recommend our company to others?</questionText>			<answers/>		</question>				</questions></questionaire>';
 
@@ -42,7 +43,25 @@ public without sharing class Qst_ProducerSurvey_Ctrl {
 		System.debug('### Get session ID. For Sites Portal users');
 		return UserInfo.getSessionId();
 	}
-	
+	// Respond with Default survey if nothing is provided
+	public String getSurveyHeader(String sid){
+		String surveyName = 'Sample Survey';
+		if (sid != null && sid.length()>0){
+			List<Qst_Survey__c> targetSurvey = [SELECT Id, Name, Default__c, Survey_Text_Name__c FROM Qst_Survey__c WHERE Id =: sid];
+			if(targetSurvey.size()>0){
+				surveyName = targetSurvey[0].Survey_Text_Name__c;
+			}
+		}else{
+			List<Qst_Survey__c> sList = [SELECT Id, Name, Default__c, Survey_Text_Name__c FROM Qst_Survey__c];
+			surveyName = sList[0].Survey_Text_Name__c;
+			for(Qst_Survey__c s : sList){
+				if(s.Default__c){
+					surveyName = s.Survey_Text_Name__c;
+				}
+			}
+		}
+		return surveyName;
+	}
 	public List<SelectOption> getItems() {
 		List<SelectOption> options = new List<SelectOption>(); 
         options.add(new SelectOption('1','1')); 

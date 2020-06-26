@@ -10,3 +10,8 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# Metadata Ignore
+**profiles**
+**force-app/main/default/profilePasswordPolicies**
+**force-app/main/default/profileSessionSettings**

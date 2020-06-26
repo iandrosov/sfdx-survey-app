@@ -1,6 +1,7 @@
 {
-  "orgName": "iandrosof company",
+  "orgName": "electric-samurai",
   "edition": "Developer",
+  "language": "en_US",
   "features": [],
   "settings": {
     "lightningExperienceSettings": {
@@ -10,6 +11,9 @@
         "passwordPolicies": {
             "enableSetPasswordInApi": true
         }
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
     },
     "mobileSettings": {
         "enableS1EncryptedStoragePref2": false
