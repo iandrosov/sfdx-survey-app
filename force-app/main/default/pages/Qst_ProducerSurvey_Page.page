@@ -11,7 +11,7 @@
                             <apex:pageMessages id="nfyMessage" /> 
                             
 							<apex:form id="theForm" forceSSL="true">
-							    <br/><br/>
+							
 								<div>
 									<apex:repeat value="{!inputs}" var="q">
 										
@@ -26,7 +26,6 @@
 								</div>
 								<apex:commandButton action="{!saveSurvey}" value="Submit Survey" id="save_survey"/>
 							</apex:form>
-
 		
 						</div>
 					</div>
